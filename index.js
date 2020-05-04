@@ -164,7 +164,7 @@ S3Storage.prototype._handleFile = function (req, file, cb) {
 
     var currentSize = 0
 
-    var transform = !this.transforms ? null : typeof this.transforms === 'function' ? this.transforms() : this.transforms[file.fieldname]()
+    var transform = !this.transforms ? null : typeof this.transforms === 'function' ? this.transforms(req, file) : this.transforms[file.fieldname](req, file)
 
     var fileStream = opts.replacementStream || file.stream
     if (transform) {
